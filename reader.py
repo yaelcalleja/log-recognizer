@@ -8,12 +8,12 @@ sampleLog = "auth.log"
 # on a log key
 # This function will be called later on the search_in_text function.
 
-def dictioner(logs, n=1):
+def dictioner(list, n=1):
     # Making the key value with the log number
     numberLog = 'log' + str(n)
     # Adding the information to the key
     dictonaryLog = {
-            numberLog: logs,
+            numberLog: list,
     }
     return dictonaryLog, n + 1
 
@@ -24,7 +24,7 @@ def dictioner(logs, n=1):
 
 def search_in_text(logs=[]):
     print(f"------------------Reading the file: {sampleLog}--------------------")
-    # We need the text exist on the carpet,
+    # We need the text exist on the carpet
     # so we gave the instruction to comprobe it
     try:
         # If there is a file to read, we go line by line searcching for regex
@@ -67,11 +67,21 @@ def search_in_text(logs=[]):
                     line
                 )
                 # Creating a list for every log field
-                logs.append(DateTime, User, Status, Ip, Port, Service)
-            return dictionary()
+                logs.extend(DateTime)
+                logs.extend(User)
+                logs.extend(Status)
+                logs.extend(Ip)
+                logs.extend(Port)
+                logs.extend(Service)
+                # Putting all logs on a dictionary
+                dictioner(logs)
+        return dictionaryLog
     except FileNotFoundError:
         print(
             "[/] ERROR You must have the file on the same carpet of the scipt"
         )
 
     print("End of file")
+
+
+print(search_in_text())
