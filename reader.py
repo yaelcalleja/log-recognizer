@@ -22,16 +22,16 @@ def list_log(listed, dat1, dat2, dat3, dat4, dat5, dat6):
 
 
 def search_in_text(logs=[], n=0):
-    print(f"------------------Reading the file: {sampleLog}--------------------")
+    print(f"-----------------Reading the file: {sampleLog}-------------------")
     # We need the text exist on the carpet
     # so we gave the instruction to comprobe it
     try:
         # If there is a file to read, we go line by line searcching for regex
         with open(sampleLog, "r") as log:
             for line in log:
-                # We've search for the date and time of the executed log.
+                # We search for the date and time of the executed log.
                 DateTime = re.findall(
-                    r'^[A-Z]{1}[a-z]{2} [1-3][0-9] (?:[0-5][0-9].){2}[0-5][0-9]',
+                    r'^[A-Z]{1}[a-z]{2} [0-9]{2} (?:[0-9]{2}.){2}[0-9]{2}',
                     line, flags=re.MULTILINE
                 )
                 # This is the second relevant data, the attempt under the log.
