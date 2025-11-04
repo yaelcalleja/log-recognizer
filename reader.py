@@ -10,6 +10,8 @@ sampleLog = "auth.log"
 def regex(r, i):
     return re.findall(r, i)
 
+# Creating a list with all the data of the search_in_text function.
+
 
 def list_log(listed, dat1, dat2, dat3, dat4, dat5, dat6):
     listed.extend(dat1)
@@ -22,7 +24,6 @@ def list_log(listed, dat1, dat2, dat3, dat4, dat5, dat6):
 
 
 def search_in_text(logs=[], n=0):
-    print(f"-----------------Reading the file: {sampleLog}-------------------")
     # We need the text exist on the carpet
     # so we gave the instruction to comprobe it
     try:
