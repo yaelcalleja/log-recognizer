@@ -2,13 +2,27 @@ import re
 
 sampleLog = "auth.log"
 
-# OOP incorporated for the log intro
+# A general class for the login attempt.
 
 
 class log:
+    # Defining the principal data from the log-in
+    def __init__(self, Logn, Date, User, Status, Ip, Port, Services):
+        self.__Logn = "Log 0"
+        self.__Date = "Jan 01 00:01:01"
+        self.__User = "Default"
+        self.__Status = "No-status"
+        self.__Ip = "0.0.0.0"
+        self.__Port = "0"
+        self.__Services = "No reachable"
 
-    def __init__(self, date, User, Status, Ip, Port, Service):
-        self.date = "Jan 01 00:01:01"
+    # A safe way to get the information of the attributes.
+    def getatributes(self):
+        return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Services
+
+    # To change any attribute from a secure way.
+    def setatribute(self):
+        pass
 
 # To search for regex and create a list with each log try
 # this function search line by line the
