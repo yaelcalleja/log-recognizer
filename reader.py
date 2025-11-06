@@ -2,6 +2,13 @@ import re
 
 sampleLog = "auth.log"
 
+# OOP incorporated for the log intro
+
+
+class log:
+
+    def __init__(self, date, User, Status, Ip, Port, Service):
+        self.date = "Jan 01 00:01:01"
 
 # To search for regex and create a list with each log try
 # this function search line by line the
