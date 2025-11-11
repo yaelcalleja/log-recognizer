@@ -21,7 +21,7 @@ class log:
         return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Services
 
     # To change any attribute from a secure way.
-    def setatribute(self):
+    def setattribute(self):
         pass
 
 # To search for regex and create a list with each log try
