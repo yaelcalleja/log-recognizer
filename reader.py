@@ -14,7 +14,7 @@ class LogEntry:
         self.__Status = "No-status"
         self.__Ip = "0.0.0.0"
         self.__Port = "0"
-        self.__Services = "No reachable"
+        self.__Service = "No reachable"
         # This build the values on every field
         self.__parse_the_line(raw_line_text)
 
@@ -24,23 +24,21 @@ class LogEntry:
         # Dictionary to iterate for the searched value
         regexs = {
             '__Date': r'^[A-Z]{1}[a-z]{2} [0-9]{2} (?:[0-9]{2}.){2}[0-9]{2}',
-            '__User': r'user [a-z]+',
-            '__Status': r'.([A-Z][a-z]{1,15} [a-z]{1,})2',
-            '__Ip': r'([0-9]{1,3}\.){3}[0-9]{1,3}',
+            '__User': r'user ([a-z]+)',
+            '__Status': r'.([A-Z][a-z]{1,15} [a-z]{1,})',
+            '__Ip': r'(([0-9]{1,3}\.){3}[0-9]{1,3})',
             '__Port': r'port ([0-9]{1,5})',
             '__Service': r'([a-z]{1,6}[1-9]{1,5})$'
         }
         # Iterating on every attribute
-        # and changing it value for the regex search results
-        for key, regex in regexs:
+        # and changing it values for the regexs search results
+        for key, regex in regexs.items():
             match = re.search(regex, line)
             if match:
-                # Because we have more than 1 posible group
-                # on our search, we try to get only the value.
+                # We try to get only the capture group of the regex
                 try:
                     found_value = match.group(1)
-                # If there was no value on the second group of the search
-                # Then try to get the first one
+                # If there was no capture group, then get all the line
                 except IndexError:
                     found_value = match.group(0)
                 setattr(self, key, found_value)
@@ -49,5 +47,30 @@ class LogEntry:
                 setattr(self, key, "Empty")
 
     # A safe way to get the attributes.
-    def getatributes(self):
-        return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Services
+
+    # Get the date.
+    def get_date(self):
+        return self.__Date
+
+    # Get the user.
+    def get_user(self):
+        return self.__User
+
+    # Get the status.
+    def get_status(self):
+        return self.__Status
+
+    # Get the ipu.
+    def get_ip(self):
+        return self.__Ip
+
+    # Get the port.
+    def get_port(self):
+        return self.__Port
+
+    # Get the service.
+    def get_service(self):
+        return self.__Service
+
+    def get_all_attributes(self):
+        return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Service
