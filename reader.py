@@ -3,27 +3,6 @@ import re
 sampleLog = "auth.log"
 
 # A general class for the login attempt.
-
-
-class log:
-    # Defining the principal data from the log-in
-    def __init__(self, Logn, Date, User, Status, Ip, Port, Services):
-        self.__Logn = "Log 0"
-        self.__Date = "Jan 01 00:01:01"
-        self.__User = "Default"
-        self.__Status = "No-status"
-        self.__Ip = "0.0.0.0"
-        self.__Port = "0"
-        self.__Services = "No reachable"
-
-    # A safe way to get the information of the attributes.
-    def getatributes(self):
-        return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Services
-
-    # To change any attribute from a secure way.
-    def setatribute(self):
-        pass
-
 # To search for regex and create a list with each log try
 # this function search line by line the
 
@@ -44,6 +23,37 @@ def list_log(listed, dat1, dat2, dat3, dat4, dat5, dat6):
     return listed
 
 
+class LogEntry:
+    # Defining the log-in class
+    def __init__(self, raw_line_text):
+        self.__Logn = "Log 0"
+        self.__Date = "Jan 01 00:01:01"
+        self.__User = "Default"
+        self.__Status = "No-status"
+        self.__Ip = "0.0.0.0"
+        self.__Port = "0"
+        self.__Services = "No reachable"
+        # To build the values on live
+        self.__parse_the_line(raw_line_text)
+
+    # The main function to build the values from the text
+    def __parse_the_line(self, line):
+        self.__Logn = "Log"
+        date_regex = r'^[A-Z]{1}[a-z]{2} [0-9]{2} (?:[0-9]{2}.){2}[0-9]{2}'
+        user_regex = r'user [a-z{1,}]'
+        status_regex = r'.[A-Z][a-z]{1,15} [a-z]{1,}'
+        ip_regex = r'([0-9]{1,3}\.){3}[0-9]{1,3}'
+        port_regex = r'port [0-9]{1,5}'
+        service_regex = r'([a-z]{1,6}[1-9]{1,5})$'
+        match = 
+    pass
+
+    # A safe way to get the attributes.
+    def getatributes(self):
+        return self.__Logn, self.__Date, self.__User, self.__Status, self.__Ip, self.__Port, self.__Services
+
+
+""""
 def search_in_text(logs=[], n=0):
     # We need the text exist on the carpet
     # so we gave the instruction to comprobe it
@@ -81,5 +91,5 @@ def search_in_text(logs=[], n=0):
 
     print("End of file")
 
-
-print(search_in_text())
+"""
+# print(search_in_text())
