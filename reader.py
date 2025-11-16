@@ -2,27 +2,8 @@ import re
 
 sampleLog = "auth.log"
 
+
 # A general class for the login attempt.
-# To search for regex and create a list with each log try
-# this function search line by line the
-
-
-def regex(r, i):
-    return re.findall(r, i)
-
-# Creating a list with all the data of the search_in_text function.
-
-
-def list_log(listed, dat1, dat2, dat3, dat4, dat5, dat6):
-    listed.extend(dat1)
-    listed.extend(dat2)
-    listed.extend(dat3)
-    listed.extend(dat4)
-    listed.extend(dat5)
-    listed.extend(dat6)
-    return listed
-
-
 class LogEntry:
     # Defining the log-in class
     def __init__(self, raw_line_text):
@@ -33,19 +14,26 @@ class LogEntry:
         self.__Ip = "0.0.0.0"
         self.__Port = "0"
         self.__Services = "No reachable"
-        # To build the values on live
+        # This build the values on every field
         self.__parse_the_line(raw_line_text)
 
     # The main function to build the values from the text
     def __parse_the_line(self, line):
         self.__Logn = "Log"
-        date_regex = r'^[A-Z]{1}[a-z]{2} [0-9]{2} (?:[0-9]{2}.){2}[0-9]{2}'
-        user_regex = r'user [a-z{1,}]'
-        status_regex = r'.[A-Z][a-z]{1,15} [a-z]{1,}'
-        ip_regex = r'([0-9]{1,3}\.){3}[0-9]{1,3}'
-        port_regex = r'port [0-9]{1,5}'
-        service_regex = r'([a-z]{1,6}[1-9]{1,5})$'
-        match = 
+        regexs = {
+            '__Date': r'^[A-Z]{1}[a-z]{2} [0-9]{2} (?:[0-9]{2}.){2}[0-9]{2}',
+            '__User': r'user [a-z{1,}]',
+            '__Status': r'.[A-Z][a-z]{1,15} [a-z]{1,}',
+            '__Ip': r'([0-9]{1,3}\.){3}[0-9]{1,3}',
+            '__Port': r'port [0-9]{1,5}',
+            '__Service': r'([a-z]{1,6}[1-9]{1,5})$'
+        }
+        for key, regex in regexs:
+            match = re.search(regex, line)
+            if match:
+                self.key = match
+            else:
+                self.key = "Empty field"
     pass
 
     # A safe way to get the attributes.
