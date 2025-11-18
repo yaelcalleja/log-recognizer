@@ -1,7 +1,5 @@
 import re
-from reader import LogEntry as 
+from log_parser import LogEntry
 
 
-def main():
 
-    return
