@@ -1,9 +1,6 @@
 import re
 
 
-sampleLog = "auth.log"
-
-
 # A general class for the login attempt.
 class LogEntry:
     # Defining the log-in class
