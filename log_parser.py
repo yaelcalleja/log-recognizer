@@ -1,5 +1,6 @@
 import re
 
+
 sampleLog = "auth.log"
 
 
