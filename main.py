@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from log_parser import LogEntry
 
 
@@ -15,3 +16,10 @@ except FileNotFoundError:
 
 for obj in objects:
     print(f"[+] Object: {obj.get_all_attributes()}")
+=======
+import re
+from log_parser import LogEntry
+
+
+
+>>>>>>> main
